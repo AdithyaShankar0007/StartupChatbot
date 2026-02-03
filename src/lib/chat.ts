@@ -58,14 +58,14 @@ export async function streamChat({
       return
     }
 
-    const response = await fetch("https://api.deepseek.com/chat/completions", {
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "deepseek-chat",
+        model: "arcee-ai/trinity-large-preview:free",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
           ...messages.map((m) => ({ role: m.role, content: m.content })),

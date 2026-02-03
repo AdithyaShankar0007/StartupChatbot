@@ -9,4 +9,13 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+      "/api/chat": {
+        target: "https://openrouter.ai/api/v1/chat/completions",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/chat/, ""),
+      },
+    },
+  },
 })
