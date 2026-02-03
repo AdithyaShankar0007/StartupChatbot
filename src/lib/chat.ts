@@ -58,7 +58,12 @@ export async function streamChat({
       return
     }
 
-    const response = await fetch("/api/chat", {
+    // Determine endpoint based on environment
+    const chatEndpoint = typeof window !== 'undefined' && window.location.hostname === 'localhost'
+      ? "/api/chat"
+      : "/api/chat"
+
+    const response = await fetch(chatEndpoint, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
